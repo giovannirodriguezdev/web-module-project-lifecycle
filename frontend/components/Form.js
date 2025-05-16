@@ -1,29 +1,16 @@
 import React from 'react'
 
 export default class Form extends React.Component {
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    if (this.props.inputValue.trim()) {
-      this.props.onAddTodo(this.props.inputValue);
-    }
-  };
-
-  handleInputChange = (event) => {
-    this.props.onInputChange(event);
-  }
 
   render() {
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <input
-          type='text'
-          placeholder='Add new todo'
-          value={this.props.inputValue}
-          onChange={this.handleInputChange}
-        />
-        <button type='submit'>Add Todo</button>
-        <button type='button' onClick={this.props.onClearCompleted}>Clear Completed</button>
-      </form>
+      <>
+      <form id="todoForm" onSubmit={this.props.onTodoFormSubmit}>
+          <input value={this.props.todoNameInput} onChange={this.props.onTodoNameInputChange} type='text' placeholder='Type todo' />
+          <input type='submit'></input>
+        </form>
+        <button onClick={this.props.toggleDisplayCompleted}>{this.props.displayCompleted ? 'Hide' : 'Show'} Completed</button>
+      </>
     )
   }
 }
